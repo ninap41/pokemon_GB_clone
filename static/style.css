@@ -1,0 +1,194 @@
+@font-face {
+    font-family: 'Pokemon Solid';
+    font-style: normal;
+    src: 
+         url('/assets/Pokemon_solid.ttf') format('truetype');
+  }
+
+@font-face {
+    font-family: 'Pokemon Hollow';
+    font-weight: 300;
+    src: 
+         url('/assets/Pokemon_hollow.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Pokemon GB';
+    font-weight: 300;
+    src: 
+         url('/assets/Pokemon_gb.ttf') format('truetype');
+}
+
+body {
+    background-color: black;
+    margin-top: 50px;
+    overflow:hidden;
+    height:auto;
+    margin: 0px;
+    padding:0px;
+    zoom: 110%;   
+ 
+}
+
+h1{
+    font-family: 'Pokemon Hollow';
+    letter-spacing: 3px;
+ 
+    height: 0px;
+    padding: 0px;
+    margin: 0px;
+    color: white;
+
+}
+
+.row div {
+    width: 20px;
+    height: 20px;
+    margin-top:-4px;
+    margin-bottom: -4px;
+    padding: 0px;
+    display: inline-block;
+}
+.row div    #Hgrass {
+    z-index: 12;
+}
+
+#text {
+    background-color: rgb(255, 252, 245);
+    position: absolute;
+    display: none;
+    z-index: 2;
+    margin-left: 217px;
+    margin-top: 290px;
+    height: 60px;
+    width: 250px;
+
+}
+.text_inside {
+    background-color: rgb(255, 252, 245);
+    margin: 2px auto;
+    color: black;
+    height: 50px;
+    width: 240px;
+    z-index: 3;
+    border: 2px ridge rgba(255, 255, 255, 0.726);
+    
+}
+
+.text_inside > #text_output  {
+    font-family: 'Pokemon GB';
+    padding: 1px;
+    letter-spacing: -1px;
+    line-height: 8.8px;
+    font-size: 7px;
+    color: slategrey;
+    padding: 3px;
+}
+
+
+#viewport {
+    position: relative;
+    margin-left:197px; 
+    /* but with toggle off or media query... margin: 0px auto; */
+    left: 20px;
+    top: 30px;
+    width: 250px;
+    height: 300px;
+}
+
+#gameContainer {
+    position: absolute;
+
+    width: 240px;
+    height: 300px;
+    color: red;
+    z-index: 1;
+}
+
+#border {
+    background-color: black;
+    position: absolute;
+    margin-top: 20px;
+    width: 240px;
+    height: 340px;
+    margin-left: 200px;
+    width: 280px;
+    z-index: 1;
+}
+
+.contain_vid_info {
+    position: absolute; 
+}
+
+.contain_vid_info p{
+    font-family: 'Pokemon GB';
+    padding-left: 3px;
+    margin-top: 60px;
+    font-size: 6px;
+    color: white;
+}
+#game {
+    border-radius: 10px;
+    position: absolute;
+    min-width: 10000px;
+    height: auto;
+    color: black;
+    
+    }
+
+    div.tile {
+        background-size: 20px 20px;
+     
+        /* background-repeat: no-repeat;
+        background-position: center; */
+        padding: 1.85px 0px;
+        margin: -1.85px 0px;
+        }
+
+        img {
+            width:100%;
+            height:100%;
+        }
+
+    #over {
+        z-index:10 !important;
+    }
+#mainCharacter {
+    background: url('assets/mainCharacter_right.png') 20px, 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    height:20px;
+    position: absolute;
+    padding: 1.85px 0px;
+    margin: -1.85px 0px;
+    margin-top: 2.6px;
+
+}
+
+#gameboy {
+    background-color: red;
+    border-radius: 10px;
+    overflow: visible;
+    position: absolute;
+    z-index: -1;
+    margin-left: 180px;
+    height: 500px;
+    width: 320px;
+}
+
+.exterior_viewport {
+    position: absolute;
+    padding: 30x;
+    width: 180px;
+    height: 200px;
+    text-align: center;
+}
+.info_frame {
+    z-index: 100;
+    position: absolute;
+    background-color: rgba(76, 56, 8, 0.575);
+    min-height: 200px;
+    width: 200px;
+}
