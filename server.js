@@ -14,7 +14,8 @@ app.use(express.static(__dirname + '/static'));
 app.use(session({secret: 'keep it secret keep it safe'})); //use session
 app.set('views', path.join(__dirname, './views')); //set dependences
 app.set('view engine', 'ejs');
-var world = require('./world.js')
+var world = require('./world.js');
+
 app.locals.c = {
     logged: false,
     play_options: {
@@ -42,7 +43,7 @@ app.post('/login', function(req,res) {
 
 })
 app.get('/world_mod', function(req, res) {
-    return res.json(world)  // module pass through ajax 
+    return res.json(world);  // module pass through ajax 
 })
 
 app.listen(8000, function() {

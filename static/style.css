@@ -98,6 +98,7 @@ h1{
 
 #gameContainer {
     position: absolute;
+ 
 
     width: 240px;
     height: 300px;
@@ -106,7 +107,7 @@ h1{
 }
 
 #border {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0);
     position: absolute;
     margin-top: 20px;
     width: 240px;
@@ -168,7 +169,7 @@ h1{
 }
 
 #gameboy {
-    background-color: red;
+    background-color: rgba(0, 0, 0, 0);
     border-radius: 10px;
     overflow: visible;
     position: absolute;
@@ -190,5 +191,5 @@ h1{
     position: absolute;
     background-color: rgba(76, 56, 8, 0.575);
     min-height: 200px;
-    width: 200px;
+    width: 180px;
 }

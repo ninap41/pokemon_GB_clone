@@ -1,0 +1,41 @@
+
+@font-face {
+    font-family: 'Pokemon GB';
+    font-weight: 300;
+    line-height: 1px;
+    src: 
+         url('/assets/Pokemon_gb.ttf') format('truetype');
+}
+
+
+.fas {
+    padding: 2px;
+    max-width: 8px;
+    color:white;
+    display:inline;
+    cursor: pointer;
+}
+
+.music_player {
+    font-family: 'Pokemon GB';
+    margin: 5px;
+    background-color: #00000000;
+    color:white;
+
+}
+
+.music_player > span {
+    font-size: 6px;
+}
+
+.toggle_button {  
+    font-size: 6px;
+    padding: 10px 5px;
+    font-family: 'Pokemon GB';
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px solid black;
+    color: white;
+    cursor: pointer;
+
+
+}

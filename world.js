@@ -45,6 +45,8 @@ const t =  {
     04 : { val: 'grass4', pass: true, event: null, transport: null, static_desc: descript.grassyyy,  sub_dir: 'grass'},
     '^' : { val: 'gladder1', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'ladder',  static_desc: descript.ladder, sub_dir: 'grass'},
     'ˆ' : { val: 'gladder2', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'ladder',  static_desc: descript.ladder, sub_dir: 'grass'},
+    '#' : { val: 'gladder1', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'starting_area',  static_desc: descript.ladder, sub_dir: 'grass'},
+    '$' : { val: 'gladder2', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'starting_area',  static_desc: descript.ladder, sub_dir: 'grass'},
     07 : { val: 'bas_flower', pass: true, event: null, transport: null, static_desc: descript.flower, sub_dir: 'grass'},
     08 : { val: 'Hgrass',  uniC: 'over', pass: true, static_desc: descript.high_grass, overlap: true, sub_dir: 'grass'},
 
@@ -161,8 +163,8 @@ const worlds ={
         [ t['ø'],t['ø'],t['ø'],t['ø'], t[03], t[04], t[03], t[04], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] ,  ],
         [ t['ø'],t['ø'],t['ø'],t['ø'], t[02], t[03], t[03], t[04], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] , ],
         [ t['ø'],t['ø'],t['ø'],t['ø'], t[03], t[02], t[03], t[07], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] ,  ],
-        [ t['ø'],t['ø'],t['ø'],t['ø'], t[02], t[03], t[10], t[03], t[04], t[01], t[01], t[01], t[10], t[08],t['^'], t[01], t['ø'] ,  ],
-        [ t['ø'],t['ø'],t['ø'],t['ø'], t[03], t[02], t[01], t[07], t[04], t[01], t[01], t[01], t[01], t[01],t['ˆ'], t[01], t['ø'] , ],
+        [ t['ø'],t['ø'],t['ø'],t['ø'], t[02], t[03], t[10], t[03], t[04], t[01], t[01], t[01], t[10], t[08],t['#'], t[01], t['ø'] ,  ],
+        [ t['ø'],t['ø'],t['ø'],t['ø'], t[03], t[02], t[01], t[07], t[04], t[01], t[01], t[01], t[01], t[01],t['$'], t[01], t['ø'] , ],
         [ t['ø'],t['ø'],t['ø'],t['ø'], t[26], t[26], t[26], t[01], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] ,  ],
         [ t['ø'],t['ø'],t['ø'],t['ø'], t[03], t[01], t[04], t[01], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] , ],
         [ t['ø'],t['ø'],t['ø'],t['ø'], t[08], t[08], t[01], t[20], t[08], t[08], t[01], t[18], t[17], t[17], t[17], t[19], t['ø']    ],
@@ -205,17 +207,17 @@ starting_coordinates: { char : { x: 7, y: 6}, world : { x: 0, y: 0}}, // char is
 // char is tile value, world is in pixels
 }
 }
-
 function audioHandler() {
     console.log('made it');
 }
 
 
+
+
 module.exports
 = {
-    audioHandler,
     descript,
     t,
     worlds,
-
+    audioHandler,
 }
