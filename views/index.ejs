@@ -36,17 +36,12 @@
                             <p>Welcome to Poke'Der.  </br> </br>
                             It's pretty dumb.</br> </br>
                            's' search high grass</br> </br> arrows keys to movie</br> </br> 'spacebar' to inspect world</br> </br> 'e' to travel</p>
-                           <button class="toggle_button"  onclick="toggleClass()" value="Toggle View"> Toggle View</button>
+                           <button class="toggle_button"  onclick="toggleView()" value="Toggle View"> Toggle View</button>
                            <div class="music_player">
                                <i onclick="toggleAudio('pause')" class="fas fa-pause-circle"></i>
                                <i onclick="toggleAudio('play')" class="fas fa-play-circle"></i>
                                <span> Play Music</span>
                             </div>
-
-                           <!-- <video loop muted autoplay id="videomain">
-                                <source src="videoname.mp4" type="video/mp4">
-                              </video> -->
-                            <!-- <object type="application/x-shockwave-flash" width="180" height="25" class="vid" data="https://www.youtube.com/v/amQY--VS-d4?start=58&version=2&autoplay=1&enablejsapi=1&hd=1&theme=dark"><param name="movie" value="https://www.youtube.com/v/amQY--VS-d4?t=58version=2&autoplay=1&enablejsapi=1&hd=1&theme=dark" /><param name="wmode" value="transparent" /></object>      -->
                         </div>     
                     </div>  
             </div>
@@ -100,9 +95,11 @@
 
                 var mainCharacter = {
                     name: 'mainCharacter',
+                    path: 'assets/characters/mainCharacter/mainCharacter_',
                     x: 6,
                     y: 7
             }
+
             
             function m (tilepath) {
                 return `assets/${tilepath.sub_dir}/${tilepath.val}.jpg`
@@ -154,28 +151,40 @@
             document.getElementById('text').style.display = 'block'
             const in_front_char = currentWorld.t[char_y_mod][char_x_mod];
             var div = document.getElementById('text_output')
-            if (in_front_char.static_desc.length > 0) {
-                console.log(iteration);
-                if(!message_length_flag) {
-                     descript_bool = true
-                    message_length_flag = in_front_char.static_desc.length 
-                    div.innerHTML = in_front_char.static_desc[iteration].content
-                    iteration += 1;
-                } else {
-                    if (iteration < message_length_flag) {
+                if (in_front_char.static_desc.length > 0) {
+                    console.log(iteration);
+                    if(!message_length_flag) {
+                        descript_bool = true
+                        message_length_flag = in_front_char.static_desc.length 
                         div.innerHTML = in_front_char.static_desc[iteration].content
                         iteration += 1;
                     } else {
-                        if ( iteration === message_length_flag) {
-                            setTimeout(clearMessage, 50);
-                            message_length_flag = null;
-                            iteration = 0;
+                        if (iteration < message_length_flag) {
+                            div.innerHTML = in_front_char.static_desc[iteration].content
+                            iteration += 1;
+                        } else {
+                            if ( iteration === message_length_flag) {
+                                setTimeout(clearMessage, 50);
+                                message_length_flag = null;
+                                iteration = 0;
+                            }
                         }
                     }
-                }
-            } 
+                } 
         }
-
+        function searchTrigger(char_x_mod, char_y_mod) {
+            const in_front_char = currentWorld.t[char_y_mod][char_x_mod];
+            if (in_front_char.val === 'Hgrass') {
+                if ( Math.floor(Math.random() * 30) + 1 === 2) {
+                    console.log('Pokemon Appears')
+                } else {
+                    console.log('theres no pokemon in grass')
+                }
+            } else {
+                console.log('Cant search here')
+            }
+        }
+        
         function eventTrigger(char_x_mod, char_y_mod) {
             const in_front_char = currentWorld.t[char_y_mod][char_x_mod];
             if (in_front_char.transport === true) {
@@ -186,6 +195,7 @@
                 displayWorld($world_module.worlds[`${next_world}`]);
             }
         }
+        
 
         function infrontchar(dir, type) {
         const event = {
@@ -194,8 +204,9 @@
                 right: () => this[type](mainCharacter.x + 1, mainCharacter.y),
                 down: () => this[type](mainCharacter.x, mainCharacter.y + 1),
             }
-                event[dir]();
-        }
+                    event[dir]();
+        
+            }
 
      
         var battle = false;
@@ -216,7 +227,8 @@
                     37 : { d: 'left', m: () => {mainCharacter.x--   }, o: () => mainCharacter.x++ , s: () => shiftWorld('left')}, 
                     38: { d: 'up', m: () => {  mainCharacter.y-- }, o: () =>  mainCharacter.y++,  s: () => shiftWorld('top') },  
                     39: { d: 'right', m: () => {  mainCharacter.x++ }, o: () => mainCharacter.x--,  s: () => shiftWorld('right') },
-                    40: { d: 'down', m: () => {  mainCharacter.y++ }, o: () => mainCharacter.y--, s: () => shiftWorld('down')} 
+                    40: { d: 'down', m: () => {  mainCharacter.y++ }, o: () => mainCharacter.y--, s: () => shiftWorld('down')},
+                    83: {d: temp_dir, m: () => infrontchar(temp_dir, 'searchTrigger'), s: () => null}
                 } 
             }
             if (event === true) {
@@ -247,7 +259,7 @@
             if (key_codes[which.keyCode] !== undefined ) {
                 temp_dir = key_codes[which.keyCode].d; // for events 
                 key_codes[which.keyCode].m()
-                 changeChar('mainCharacter', key_codes[which.keyCode].d);
+                 changeChar(mainCharacter, key_codes[which.keyCode].d); // pass Object and direction
                     if(!currentWorld.t[mainCharacter.y][mainCharacter.x].pass){  // if character cant pass object, move it backwards. or ELSE o() doesnt counteract m() and world shifts
                         key_codes[which.keyCode].o()
                     } else {

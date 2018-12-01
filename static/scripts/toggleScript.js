@@ -1,9 +1,9 @@
 function toggleAudio( value){
-    playMusic === true ? playMusic === false : playMusic === true ;
-    currentTrack[value](); //whether pause of play etc.
+    playMusic === true ? playMusic === false : playMusic === true ; //affects if music is played in next world
+    currentTrack[value](); // whether pause of play etc.
 }
 
-function toggleClass(){
+function toggleView(){
     el_arr = ['gameboy', 'border', 'viewport']
     var viewport = document.getElementById('viewport');
     var gameboy = document.getElementById('gameboy');

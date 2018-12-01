@@ -9,8 +9,11 @@ const descript = {
     'flower': [{ content: "flowersssssss"} , { content: "yasss"}],
     'ladder': [{ content: "ladder to a new place. "}, {content: "Wait..."}, {content: "Why the FUCK is there a ladder in the middle of the grass...?"}, {content: "Leading to nowhere? Press 'E' to travel"}],
     'house': [{ content: "its a house.... Dumbass"}],
-    "prof_sign" :  [{ content: "Professor Sneezewort's House:" + '<br>' + " You want a Poke'dum, dum dum? " + '<br>' + " I will give you free Poke'Dum" + '<br><b>' + "But only if you pay cash or Whiskey" + '</b>'}],
+    "prof_sign" :  [{ content: "Professor Sneezewort's House:" + '<br>' + " You want a Poke'dum, dum dum? " + '<br>' + " I will give you free Poke'Dum" + '<br><b>' + "only if you pay in whiskey" + '</b>'}, {content: 'or malort.'}],
     "prof_door" : [{ content: "Press 'E' to enter home."}],
+    "floor1" : [{ content: "It's a slippery gross floor"}, { content: "nothing special here"}],
+    "exit" : [{ content: "exit by pressing 'e'"}, { content: "nothing special here"}],
+
     
 
 
@@ -24,7 +27,7 @@ const events = {
         name: 'oak',
         scripts: [ 
             { content: 'hey trainer', choice_flag: false, P_choice_type: false },
-            {content: 'choose a mon',  choice_flag: true, P_choice_type: 'multi'}
+            {content: "choose a Poke'Der",  choice_flag: true, P_choice_type: 'multi'}
         ]
     }
 }
@@ -43,12 +46,14 @@ const t =  {
     02 : { val: 'grass2', pass: true, event: null, transport: null, static_desc: descript.grassyyy,  sub_dir: 'grass'},
     03: { val: 'grass3', pass: true, event: null, transport: null, static_desc: descript.grassyyy,  sub_dir: 'grass'},
     04 : { val: 'grass4', pass: true, event: null, transport: null, static_desc: descript.grassyyy,  sub_dir: 'grass'},
+    // LADDERS
     '^' : { val: 'gladder1', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'ladder',  static_desc: descript.ladder, sub_dir: 'grass'},
     'ˆ' : { val: 'gladder2', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'ladder',  static_desc: descript.ladder, sub_dir: 'grass'},
     '#' : { val: 'gladder1', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'starting_area',  static_desc: descript.ladder, sub_dir: 'grass'},
     '$' : { val: 'gladder2', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'starting_area',  static_desc: descript.ladder, sub_dir: 'grass'},
+    // HIGH GRASS AND FLOWERS
     07 : { val: 'bas_flower', pass: true, event: null, transport: null, static_desc: descript.flower, sub_dir: 'grass'},
-    08 : { val: 'Hgrass',  uniC: 'over', pass: true, static_desc: descript.high_grass, overlap: true, sub_dir: 'grass'},
+    08 : { val: 'Hgrass',  uniC: 'over', event: true,  pass: true, static_desc: descript.high_grass, overlap: true, sub_dir: 'grass'},
 
     'ø' : { val: 'grey', pass: true, event: null, transport: null, pass : false, static_desc: descript.wall, sub_dir: 'grass'}, // black
     'ø1' : { val: 'trees_TR', pass: false, event: null, transport: null, static_desc: descript.wall, sub_dir: 'grass'}, // trees top
@@ -86,7 +91,10 @@ const t =  {
     'H19' : { val: 'prof_house_VBML', pass: false, event: null, transport: null, transport: true, new_world : 'professor_sneeze', static_desc: descript.prof_door, sub_dir: 'homes/prof'}, //
     'H20' : { val: 'prof_house_VBL', pass: false, event: null, transport: null, static_desc: descript.house, sub_dir: 'homes/prof'}, //
     's1' : { val: 'prof_sign', pass: false, event: null, transport: null,  static_desc: descript.prof_sign, sub_dir: 'homes/prof'}, //
-
+    // FLOORS
+    99 : { val: 'floor1', pass: true, event: null, transport: null,  static_desc: descript.floor, sub_dir: 'interior'}, //
+    '9*' : { val: 'floor1_xBl', pass: false, event: null,  transport: true,   static_desc: descript.floor, sub_dir: 'interior', static_desc: descript.exit, new_world : 'starting_area',}, //
+    '9$' : { val: 'floor1_xBr', pass: false, event: null,  transport: true,   static_desc: descript.floor, sub_dir: 'interior', static_desc: descript.exit, new_world : 'starting_area',}, //
 
     10 : { val: 'lake_B', pass: false, event: null, transport: null, static_desc: descript.lake, sub_dir: 'grass'},
     11 : { val: 'lake_BL', pass: false, event: null, transport: null, static_desc: descript.lake, sub_dir: 'grass'},
@@ -184,24 +192,24 @@ const worlds ={
  },
  professor_sneeze : {
     t: [
-    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'] ],
-    [ t['ø'],t[03], t[04], t[03], t[04], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] ,  ],
-    [ t['ø'], t[02], t[03], t[03], t[04], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] , ],
-    [ t['ø'], t[03], t[02], t[03], t[07], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] ,  ],
-    [ t['ø'], t[02], t[03], t[10], t[03], t[04], t[01], t[01], t[01], t[10], t[08],t['^'], t[01], t['ø'] ,  ],
-    [ t['ø'], t[03], t[02], t[01], t[07], t[04], t[01], t[01], t[01], t[01], t[01],t['ˆ'], t[01], t['ø'] , ],
-    [ t['ø'], t[26], t[26], t[26], t[01], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] ,  ],
-    [ t['ø'], t[03], t[01], t[04], t[01], t[04], t[01], t[01], t[01], t[01], t[01], t[01], t[01], t['ø'] , ],
-    [ t['ø'], t[08], t[08], t[01], t[20], t[08], t[08], t[01], t[18], t[17], t[17], t[17], t[19], t['ø']    ],
-    [ t['ø'], t[08], t[08], t[08], t[08], t[08], t[08], t[01], t[13], t[22], t[22], t[22], t[16], t['ø']   ],
-    [ t['ø'], t[08], t[08], t[08], t[08], t[08], t[08], t[01], t[13], t[22], t[22], t[22], t[16], t['ø']  ],
-    [ t['ø'], t[08], t[08], t[08], t[08], t[08], t[08], t[01], t[13], t[22], t[22], t[22], t[20], t['ø']   ],
-    [ t['ø'], t[02], t[08], t[08], t[08], t[08], t[08], t[01], t[13], t[22], t[22], t[22], t[16], t['ø']   ],
-    [ t['ø'], t[08], t[08], t[08], t[08], t[08], t[08], t[01], t[20], t[10], t[10], t[10], t[12], t['ø'] ],
-    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'] ],
-    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'] ],
-    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'] ],
-    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'] ],
+    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'],  ],
+    [ t['ø'],t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø'] ,  ],
+    [ t['ø'], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø'] , ],
+    [ t['ø'], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø'] ,  ],
+    [ t['ø'], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø'] ,  ],
+    [ t['ø'], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø'] , ],
+    [ t['ø'], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø'] ,  ],
+    [ t['ø'], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø'] , ],
+    [ t['ø'], t[08], t[08], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø']    ],
+    [ t['ø'], t[08], t[08], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø']   ],
+    [ t['ø'], t[08], t[08], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø']  ],
+    [ t['ø'], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø']   ],
+    [ t['ø'], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø']   ],
+    [ t['ø'], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t[99], t['ø'] ],
+    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['9*'], t['9$'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'],  ],
+    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], ],
+    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], ],
+    [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], ],
 ],
 starting_coordinates: { char : { x: 7, y: 6}, world : { x: 0, y: 0}}, // char is tile value, world is in pixels
 // char is tile value, world is in pixels

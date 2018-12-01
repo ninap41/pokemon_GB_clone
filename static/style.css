@@ -155,7 +155,7 @@ h1{
         z-index:10 !important;
     }
 #mainCharacter {
-    background: url('assets/mainCharacter_right.png') 20px, 20px;
+    background: url('assets/characters/mainCharacter/mainCharacter_right.png') 20px, 20px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -165,7 +165,18 @@ h1{
     padding: 1.85px 0px;
     margin: -1.85px 0px;
     margin-top: 2.6px;
+}
 
+#generaCharacter {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 20px;
+    height:20px;
+    position: absolute;
+    padding: 1.85px 0px;
+    margin: -1.85px 0px;
+    margin-top: 2.6px;
 }
 
 #gameboy {
