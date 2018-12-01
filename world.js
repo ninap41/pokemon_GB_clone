@@ -46,11 +46,15 @@ const t =  {
     02 : { val: 'grass2', pass: true, event: null, transport: null, static_desc: descript.grassyyy,  sub_dir: 'grass'},
     03: { val: 'grass3', pass: true, event: null, transport: null, static_desc: descript.grassyyy,  sub_dir: 'grass'},
     04 : { val: 'grass4', pass: true, event: null, transport: null, static_desc: descript.grassyyy,  sub_dir: 'grass'},
-    // LADDERS
-    '^' : { val: 'gladder1', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'ladder',  static_desc: descript.ladder, sub_dir: 'grass'},
-    'ˆ' : { val: 'gladder2', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'ladder',  static_desc: descript.ladder, sub_dir: 'grass'},
-    '#' : { val: 'gladder1', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'starting_area',  static_desc: descript.ladder, sub_dir: 'grass'},
-    '$' : { val: 'gladder2', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'starting_area',  static_desc: descript.ladder, sub_dir: 'grass'},
+
+     ///////// /* starting world to ladder */ 
+    '^' : { val: 'gladder1', pass: false, event: false, transport: false, static_desc: descript.ladder,  static_desc: descript.ladder, sub_dir: 'grass'},
+    'ˆ' : { val: 'gladder2', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'ladder',  static_desc: descript.ladder, sub_dir: 'grass', starting_coordinates: { char : { x: 13, y: 5}, world : { x: -120, y: 20}}},
+
+     ///////// /* LADDER to starting world*/ 
+    '#' : { val: 'gladder1', pass: false, event: false, transport: false, static_desc: descript.ladder,  static_desc: descript.ladder, sub_dir: 'grass'},
+    '$' : { val: 'gladder2', pass: false, event: false, transport: true, static_desc: descript.ladder,  new_world : 'starting_area',  static_desc: descript.ladder, sub_dir: 'grass',starting_coordinates: { char : { x: 12, y: 6}, world : { x: -100, y: 0}}},
+    
     // HIGH GRASS AND FLOWERS
     07 : { val: 'bas_flower', pass: true, event: null, transport: null, static_desc: descript.flower, sub_dir: 'grass'},
     08 : { val: 'Hgrass',  uniC: 'over', event: true,  pass: true, static_desc: descript.high_grass, overlap: true, sub_dir: 'grass'},
@@ -69,7 +73,7 @@ const t =  {
     '_0' : { val: 'tre_TL', pass: false, event: null, transport: null, static_desc: descript.wall, sub_dir: 'grass'}, //
     '_1' : { val: 'tre_ML', pass: false, event: null, transport: null, static_desc: descript.wall, sub_dir: 'grass'}, //
     '_2' : { val: 'tre_BL', pass: false, event: null, transport: null, static_desc: descript.wall, sub_dir: 'grass'}, //
-
+// PROFESSOR SNEEZE'S HOUSE 
     'H1' : { val: 'prof_house_TipR', pass: false, event: null, transport: null, static_desc: descript.house, sub_dir: 'homes/prof'}, //
     'H2' : { val: 'prof_house_TipMR', pass: false, event: null, transport: null, static_desc: descript.house, sub_dir: 'homes/prof'}, //
     'H3' : { val: 'prof_house_TipML', pass: false, event: null, transport: null, static_desc: descript.house, sub_dir: 'homes/prof'}, //
@@ -88,13 +92,16 @@ const t =  {
     'H16' : { val: 'prof_house_BL', pass: false, event: null, transport: null, static_desc: descript.house, sub_dir: 'homes/prof'}, //
     'H17' : { val: 'prof_house_VBR', pass: false, event: null, transport: null, static_desc: descript.house, sub_dir: 'homes/prof'}, //
     'H18' : { val: 'prof_house_VBMR', pass: false, event: null, transport: null, static_desc: descript.house, sub_dir: 'homes/prof'}, //
-    'H19' : { val: 'prof_house_VBML', pass: false, event: null, transport: null, transport: true, new_world : 'professor_sneeze', static_desc: descript.prof_door, sub_dir: 'homes/prof'}, //
+   /* sneeze to outside */ 
+   'H19' : { val: 'prof_house_VBML', pass: false, event: null, transport: null, transport: true, new_world : 'professor_sneeze', static_desc: descript.prof_door, sub_dir: 'homes/prof', starting_coordinates: { char : { x: 7, y: 13}, world : { x: 0, y: -140}},}, 
+
     'H20' : { val: 'prof_house_VBL', pass: false, event: null, transport: null, static_desc: descript.house, sub_dir: 'homes/prof'}, //
     's1' : { val: 'prof_sign', pass: false, event: null, transport: null,  static_desc: descript.prof_sign, sub_dir: 'homes/prof'}, //
+
     // FLOORS
     99 : { val: 'floor1', pass: true, event: null, transport: null,  static_desc: descript.floor, sub_dir: 'interior'}, //
-    '9*' : { val: 'floor1_xBl', pass: false, event: null,  transport: true,   static_desc: descript.floor, sub_dir: 'interior', static_desc: descript.exit, new_world : 'starting_area',}, //
-    '9$' : { val: 'floor1_xBr', pass: false, event: null,  transport: true,   static_desc: descript.floor, sub_dir: 'interior', static_desc: descript.exit, new_world : 'starting_area',}, //
+    '9*' : { val: 'floor1_xBl', pass: false, event: null,  transport: true,   static_desc: descript.floor, sub_dir: 'interior', static_desc: descript.exit, new_world : 'starting_area', starting_coordinates:  { char : { x: 23, y: 7}, world : { x: -320, y: -20}} }, //
+    '9$' : { val: 'floor1_xBr', pass: false, event: null,  transport: true,   static_desc: descript.floor, sub_dir: 'interior', static_desc: descript.exit, new_world : 'starting_area', starting_coordinates: { char : { x: 23, y: 7}, world : { x: -320, y: -20}}}, //
 
     10 : { val: 'lake_B', pass: false, event: null, transport: null, static_desc: descript.lake, sub_dir: 'grass'},
     11 : { val: 'lake_BL', pass: false, event: null, transport: null, static_desc: descript.lake, sub_dir: 'grass'},
@@ -121,12 +128,7 @@ const t =  {
 //remember that when a character enters a room the spawning area has to have coordinates stored and the game itself positioned relative to character to have cam centered!
 
 //worlds obj should be imported via module
-const worlds ={
-    mainCharacter : {
-        name: 'mainCharacter',
-        x: 6,
-        y: 7
-    },
+var worlds ={
     starting_area: {
         info: { name: 'Poop Town',  description: 'The pile of shit you came from.'},
         stored_chars : {
@@ -188,7 +190,7 @@ const worlds ={
     ],
     audio : 'assets/audio/road_to_viridian_city_leaving.mp3',
 
-    starting_coordinates: { char : { x: 7, y: 6}, world : { x: 0, y: 0}}, // char is tile value, world is in pixels
+    starting_coordinates: t['ˆ'].starting_coordinates, // char is tile value, world is in pixels
  },
  professor_sneeze : {
     t: [
@@ -211,8 +213,8 @@ const worlds ={
     [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], ],
     [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], ],
 ],
-starting_coordinates: { char : { x: 7, y: 6}, world : { x: 0, y: 0}}, // char is tile value, world is in pixels
-// char is tile value, world is in pixels
+starting_coordinates:  t['H19'].starting_coordinates  // from sneeze tile to outside // char is tile value, world is in pixels
+// the tile in front of characters starting point should be assigned to the currentWorlds starting point
 }
 }
 function audioHandler() {

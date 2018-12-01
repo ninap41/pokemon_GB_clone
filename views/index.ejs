@@ -74,6 +74,8 @@
             var fun = $world_module.changeChar
             var currentTrack;
             var playMusic = true;
+            var in_front_char = null
+
             var temp_track;
             var world_y_pos = currentWorld.starting_coordinates.world.y
             var world_x_pos = currentWorld.starting_coordinates.world.x
@@ -109,17 +111,21 @@
                 $(`#${character.name}`).animate({left: character.x * 20 + 'px', top: character.y * 20 + 'px'}, 100)
             }
             function resetWorldonTraversal(world) {
-                world_y_pos = currentWorld.starting_coordinates.world.y
-                world_x_pos = currentWorld.starting_coordinates.world.x
+ 
                 if(world.starting_coordinates !== null) {  // starting_coordinates: { char : { x: 8, y: 6}, world : { x: 0, y: 0}}, 
                     $('#gameContainer').animate({"left": `${world.starting_coordinates.world.x}px`}, 60); //resets world on traversal OR  world.starting_coordinates
                     $('#gameContainer').animate({"top": `${world.starting_coordinates.world.y}px`},  60);//resets world on traversal world.starting_coordinates
+                    world_y_pos = world.starting_coordinates.world.y
+                world_x_pos = world.starting_coordinates.world.x
                     mainCharacter.x = world.starting_coordinates.char.x;
                     mainCharacter.y = world.starting_coordinates.char.y;
                 }
             }
 
-            function displayWorld(world){
+            function displayWorld(world, in_front_char){
+                if(in_front_char !== null ){
+                    world.starting_coordinates = in_front_char.starting_coordinates
+                }
                 resetWorldonTraversal(world) 
                 var output;
                 for(var i = 0; i  < world.t.length; i++) {
@@ -137,7 +143,7 @@
                 }
                 document.getElementById('game').innerHTML = output 
             }
-            displayWorld(currentWorld);
+            displayWorld(currentWorld, in_front_char);
 
        
 
@@ -192,7 +198,7 @@
                 var next_world = in_front_char['new_world'];
                 currentTrack.pause()
                 playMusic = false;
-                displayWorld($world_module.worlds[`${next_world}`]);
+                displayWorld($world_module.worlds[`${next_world}`], in_front_char);
             }
         }
         

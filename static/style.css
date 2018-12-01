@@ -154,6 +154,7 @@ h1{
     #over {
         z-index:10 !important;
     }
+    
 #mainCharacter {
     background: url('assets/characters/mainCharacter/mainCharacter_right.png') 20px, 20px;
     background-repeat: no-repeat;
