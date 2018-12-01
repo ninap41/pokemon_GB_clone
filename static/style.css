@@ -91,9 +91,16 @@ h1{
     margin-left:197px; 
     /* but with toggle off or media query... margin: 0px auto; */
     left: 20px;
+    border-radius: 5px;
     top: 30px;
     width: 250px;
     height: 300px;
+}
+
+.shadow {
+    /* Use -webkit- only if supporting: Chrome < 54, iOS < 9.3, Android < 4.4.4 */
+    -webkit-filter: drop-shadow( -5px -5px 5px #000 ); 
+            filter: drop-shadow( -5px -5px 5px #000 );
 }
 
 #gameContainer {
@@ -111,9 +118,10 @@ h1{
     position: absolute;
     margin-top: 20px;
     width: 240px;
-    height: 340px;
-    margin-left: 200px;
-    width: 280px;
+    border-radius: 5px;
+    height: 320px;
+    margin-left: 207px;
+    width: 270px;
     z-index: 1;
 }
 
@@ -154,7 +162,7 @@ h1{
     #over {
         z-index:10 !important;
     }
-    
+
 #mainCharacter {
     background: url('assets/characters/mainCharacter/mainCharacter_right.png') 20px, 20px;
     background-repeat: no-repeat;
