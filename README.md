@@ -1,5 +1,5 @@
-# pokemon_clone
-# pokemon_GB_clone
+
+# pokemon_GB_clone (Poke'Der)
 
 A WIP. Includes map creator functions, tile objects, and images. Player can traverse worlds, change view to a GB color, and trigger events and descriptions of environment. All objects and map elements stored through node API as JSON.
 
