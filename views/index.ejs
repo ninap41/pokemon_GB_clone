@@ -97,6 +97,7 @@
 
                 var mainCharacter = {
                     name: 'mainCharacter',
+                    value: 'mainCharacter',
                     path: 'assets/characters/mainCharacter/mainCharacter_',
                     x: 6,
                     y: 7
@@ -109,6 +110,14 @@
 
             function displayCharacter(character) {
                 $(`#${character.name}`).animate({left: character.x * 20 + 'px', top: character.y * 20 + 'px'}, 100)
+            }
+
+            function changeChar(char, obj_string) {
+                $(`#${char.value}`).css("background", `url('${char.path}${obj_string}.png') 20px, 20px`)
+                .css("background-repeat", `no-repeat`)
+                .css("background-position", `center`)
+                .css("background-size", `cover`);
+                return;
             }
             function resetWorldonTraversal(world) {
  
@@ -123,10 +132,12 @@
             }
 
             function displayWorld(world, in_front_char){
-                if(in_front_char !== null ){
+
+                if(in_front_char){
                     world.starting_coordinates = in_front_char.starting_coordinates
                 }
                 resetWorldonTraversal(world) 
+                npcDisplay(world);
                 var output;
                 for(var i = 0; i  < world.t.length; i++) {
                     output += "\n<div class='row'>"
@@ -138,6 +149,7 @@
                 displayCharacter(mainCharacter);
                 currentWorld = world;
                 currentTrack = new Audio(`${currentWorld.audio}`)
+                console.log(playMusic);
                 if(playMusic === true) {
                     currentTrack.play().catch()                
                 }
@@ -197,7 +209,6 @@
                 document.getElementById('game').innerHTML = null;
                 var next_world = in_front_char['new_world'];
                 currentTrack.pause()
-                playMusic = false;
                 displayWorld($world_module.worlds[`${next_world}`], in_front_char);
             }
         }
@@ -261,6 +272,7 @@
 
          
 
+
             console.log(temp_dir)
             if (key_codes[which.keyCode] !== undefined ) {
                 temp_dir = key_codes[which.keyCode].d; // for events 
@@ -274,12 +286,19 @@
                     if (currentWorld.t[mainCharacter.y][mainCharacter.x].overlap === true) {
                         console.log(document.getElementById(`${currentWorld.t[mainCharacter.y][mainCharacter.x].val}`))
                     } 
-                        if (currentWorld.cpus) {
-                            // function call to  place cpus in their rooms. function displayCharacter(); 
-                            // have display character work for every kind of character.
-                        }
+                    if (currentWorld.characters) {
+                        canPlayerPassNpc(currentWorld.characters,key_codes[which.keyCode]);
+                    }
                         displayCharacter(mainCharacter);
                 }
+            }
+            function canPlayerPassNpc(world_characters, key_code) { // should be all world characters
+                world_characters.forEach(c => {
+                    // console.log(currentWorld)
+                    // if (currenWorld.t[mainCharacter.x][mainCharacter.y] === currenWorld.t[c.char.x][c.char.y]){
+                    //     key_code.o()
+                    // }
+                });
             }
 
             </script>

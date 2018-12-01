@@ -19,15 +19,16 @@ const descript = {
 
 }
 
+const choice = {}
+
 
 const events = {
     // store data for events. front handles dom stuff with this
     eventTypes: { chat: () => {}, battle: () => {}},
-    event1 : {
-        name: 'oak',
+    sneeze_choice: {
         scripts: [ 
-            { content: 'hey trainer', choice_flag: false, P_choice_type: false },
-            {content: "choose a Poke'Der",  choice_flag: true, P_choice_type: 'multi'}
+            { content: 'hey trainer', choice_flag: false, choice: null },
+            { content: "Choose a Poke'Der",  choice_flag: true, choice: { content: ['pickachub', 'lickabub','jiggypoof']}}
         ]
     }
 }
@@ -36,8 +37,17 @@ const b_t = {
 
 }
 
-const char_t = {
-
+const cT = {
+    'PS': {
+        name: "Professor Sneeze",
+        value: 'professor_sneeze',
+        x: 7,
+        y: 3,
+        default_scripts : [{ content: 'hey trainer', choice_flag: false, choice: null }, { content: 'Welcome to POOP TOWN', choice_flag: false, choice: null }],
+        event : {state: false, eventName: events.sneeze_choice },
+        starting_coordinates: { char: { x: 7, y: 3}},
+        path: 'assets/characters/professor/professor_down'
+    }
 }
 
 const t =  {
@@ -218,6 +228,7 @@ var worlds ={
     [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], ],
     [ t['ø'],t['ø'],t['ø'],t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], t['ø'], ],
 ],
+characters: [{ char: cT['PS'], starting_coordinates: cT['PS'].starting_coordinates }],
 starting_coordinates:  t['H19'].starting_coordinates  // from sneeze tile to outside // char is tile value, world is in pixels
 // the tile in front of characters starting point should be assigned to the currentWorlds starting point
 }

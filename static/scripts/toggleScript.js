@@ -1,5 +1,9 @@
 function toggleAudio( value){
-    playMusic === true ? playMusic === false : playMusic === true ; //affects if music is played in next world
+    if (value === 'pause') {
+        playMusic = false
+    } else {
+        playMusic = true 
+    }
     currentTrack[value](); // whether pause of play etc.
 }
 
