@@ -8,7 +8,7 @@ Working on npc events, battles, api to a DB to save and load character.
 #to run
 
 download, cd into directory with server.js and run `npm start` or `nodemon server.js`
-There are a couple library imports, so make sure youre connected to wifi.
+
 
 ![alt text](https://user-images.githubusercontent.com/30353378/49333135-4578da80-f57f-11e8-9305-1e46c27f8961.png)
 ![alt text](https://user-images.githubusercontent.com/30353378/49333136-46117100-f57f-11e8-8d15-5c2ff39bddca.png)
